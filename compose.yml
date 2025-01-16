@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    ports:
+      - "83:83"
+  redis:
+    image: "redis:bookworm"
