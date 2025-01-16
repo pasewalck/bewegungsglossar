@@ -16,6 +16,7 @@ const App = () => {
 
   useEffect(() => {
     initializeWorker();
+    document.title = 'Bewegungsglossar';
   }, []);
 
   const init = (newTerms) => {
