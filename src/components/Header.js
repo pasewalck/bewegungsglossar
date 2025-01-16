@@ -14,7 +14,6 @@ const Header = () => (
       alignItems: 'center',
       justifyContent: 'space-between'
     }}>
-      {/* Wrap logo and text in a Button for navigation */}
       <Button 
         component="a" 
         href="https://www.google.com" 
@@ -30,7 +29,7 @@ const Header = () => (
       
       {/* Flex container for buttons */}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Button color="inherit" href="https://wiki.aktivismus.org/" sx={{ display: 'flex', alignItems: 'center', mr: 2 }}> {/* Add margin-right here */}
+        <Button color="inherit" href="https://wiki.aktivismus.org/" sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
           <img 
             src={WikiIcon} 
             alt="Wiki Icon" 
@@ -50,17 +49,20 @@ const Header = () => (
     </Box>
     
     <Box sx={{
-      height: '100px',
+      height: '150px',
       p: 2, 
       pb: 4,
       bgcolor: 'primary.main', 
       color: 'white',
       display: 'flex',
+      flexDirection: 'column', // Stack items vertically
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <Typography variant="h2" align="center">Bewegungs Glossar</Typography>
-      <Typography variant="h4" align="center">Lorem ipsum lalala naja vllt ne Beschreibung die auch ganz nett wäre aber die gibt es halt noch net :/</Typography>
+      <Typography variant="h2" align="center" sx={{ m: 1 }}>Bewegungs Glossar</Typography>
+      <Typography variant="h6" align="center" sx={{ mb: 4, width: 500 }}>
+        Lorem ipsum lalala naja vllt ne Beschreibung die auch ganz nett wäre aber die gibt es halt noch net :/
+      </Typography>
     </Box>
   </Box>
 );

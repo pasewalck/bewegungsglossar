@@ -20,6 +20,7 @@ const MarkdownUpdater = ({ url, setTerms, setFilteredTerms }) => {
     };
 
     fetchTerms();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   const parseMarkdown = (markdown) => {
