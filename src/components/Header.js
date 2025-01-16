@@ -59,7 +59,7 @@ const Header = () => (
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <Typography variant="h2" align="center" sx={{ m: 1 }}>Bewegungs Glossar</Typography>
+      <Typography variant="h2" align="center" sx={{ m: 1 }}>Bewegungsglossar</Typography>
       <Typography variant="h6" align="center" sx={{ mb: 4, width: 500 }}>
         Lorem ipsum lalala naja vllt ne Beschreibung die auch ganz nett wäre aber die gibt es halt noch net :/
       </Typography>
