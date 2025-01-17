@@ -6,8 +6,8 @@ import CalendarIcon from '../assets/icons/calendar-icon.png'; // Adjust path as 
 const Header = () => (
   <Box>
     <Box sx={{
-      height: '50px',
-      p: 2,
+      height: '70px',
+      pl: 3,
       bgcolor: 'primary.main',
       color: 'white',
       display: 'flex',

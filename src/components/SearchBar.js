@@ -1,10 +1,13 @@
-import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useRef, useEffect, useLayoutEffect, useState, forwardRef, useImperativeHandle, startTransition } from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { handleSearch } from '../utils/filter.ts';
 import ClearIcon from '@mui/icons-material/Clear';
+import useDebounce from '../utils/useDebounce';
 
-const SearchBar = forwardRef(({ onSearch }, ref) => {
+const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearchQuery, onSearch }, ref) => {
   const inputRef = useRef(null);
-  const [inputValue, setInputValue] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [justCleared, setJustCleared] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -27,56 +30,83 @@ const SearchBar = forwardRef(({ onSearch }, ref) => {
   }, []);
 
   useImperativeHandle(ref, () => ({
-    clear() {
-      setInputValue('');
+    clear(ignoreTerms=false) {
+      setSearchQuery('');
+      setJustCleared(true);
+      parent_setSearchQuery('');
+      if (!ignoreTerms) {
+        parent_setFilteredTerms(terms);
+      }
     }
   }));
+  
 
   const handleClear = () => {
-    setInputValue('');
-    console.log('s');
+    setSearchQuery('');
     onSearch('');
   };
 
   const handleChange = (e) => {
-    console.log('s');
+    setSearchQuery(e.target.value);
     onSearch(e.target.value);
-    setInputValue(e.target.value);
   };
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 100);
+  
+  useLayoutEffect(() => {
+    if (debouncedSearchQuery) {
+      handleSearch(debouncedSearchQuery, results => {
+        startTransition(() => {
+          parent_setSearchQuery(debouncedSearchQuery);
+          parent_setFilteredTerms(results);
+        });
+      });
+    } else {
+      startTransition(() => {
+        if (justCleared) {
+          setJustCleared(false);
+        } else {
+          parent_setSearchQuery('');
+          parent_setFilteredTerms(terms);
+        }
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchQuery]);
 
   return (
     <TextField
       inputRef={inputRef}
       fullWidth
       variant="outlined"
-      placeholder="Search terms..."
-      value={inputValue}
+      placeholder="Begriffe durchsuchen..."
+      value={searchQuery}
       onChange={handleChange}
-        sx={{
-            pt: 1,
-            pb: 1,
-            pl: 1,
-            bgcolor: 'background.paper',
-            borderRadius: 2,
-            boxShadow: 2,
-            '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'transparent',
-            },
-            '&:hover fieldset': {
-                borderColor: 'transparent',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: 'transparent',
-            },
-            },
-        }}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          padding: '8px', // Move padding here
+          bgcolor: 'background.paper',
+          borderRadius: 2,
+          boxShadow: 2,
+          '& fieldset': {
+            borderColor: 'transparent',
+          },
+          '&:hover fieldset': {
+            borderColor: 'transparent',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'primary.main',
+            borderWidth: 1,
+          },
+        },
+      }}
+      
       slotProps={{
         input: {
           size: 'small',
           endAdornment: (
-            <InputAdornment position="end">
-              {inputValue && (
+            <InputAdornment position="end" sx={{ pr: 2 }}>
+              {searchQuery && (
                 <IconButton onClick={handleClear} edge="end">
                   <ClearIcon />
                 </IconButton>

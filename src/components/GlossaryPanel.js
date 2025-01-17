@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import GlossaryList from './GlossaryList';
 
-const GlossaryPanel = ({ terms, searchQuery, sx }) => (
+const GlossaryPanel = ({ terms, searchQuery, selectedTerm, sx }) => (
   <Box sx={{ p: terms.length > 0 ? 2 : 4, overflowY: 'auto', height: '100%', ...sx }}>
     {terms.length > 0 ? (
-      <GlossaryList terms={terms} searchQuery={searchQuery} />
+      <GlossaryList terms={terms} searchQuery={searchQuery} selectedTerm={selectedTerm} />
     ) : (
       <Box sx={{
         display: 'flex',

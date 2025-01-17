@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import Header from './components/Header';
@@ -19,15 +19,19 @@ const App = () => {
     document.title = 'Bewegungsglossar';
   }, []);
 
-  const init = (newTerms) => {
+  const init = useCallback((newTerms) => {
     setTerms(newTerms);
-    initializeFuse(newTerms);
-  };
-
-  const onUpdate = (newTerms, query) => {
     setFilteredTerms(newTerms);
+    initializeFuse(newTerms);
+  }, []);
+
+  const handleSearchQueryChange = useCallback((query) => {
     setSearchQuery(query);
-  }
+  }, []);
+
+  const handleSetSelectedTerm = useCallback((term) => {
+    setSelectedTerm(term);
+  }, []);
 
 
   return (
@@ -46,10 +50,13 @@ const App = () => {
             width: '1200px',
             maxWidth: '100%',
           }}>
-            <SearchPanel 
-              onUpdate={onUpdate}
+            <SearchPanel
+              parent_setSearchQuery={handleSearchQueryChange}
+              parent_setFilteredTerms={setFilteredTerms}
+              parent_setSelectedTerm={handleSetSelectedTerm}
               setSelectedTerm={setSelectedTerm}
               terms={terms}
+              filteredTerms={filteredTerms}
               sx={{ width: '40%', flexShrink: 0 }}
             />
             <GlossaryPanel 

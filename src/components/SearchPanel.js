@@ -1,75 +1,55 @@
-import React, { useState, useRef, useLayoutEffect, startTransition  } from 'react';
+import React, { useState, useRef, startTransition  } from 'react';
 import { Box, Button, Grid2 } from '@mui/material';
 import SearchBar from './SearchBar';
 import AlphabeticalTermList from './AlphabeticalTermList';
-import useDebounce from '../utils/useDebounce';
-import { handleSearch, handleLetterFilter } from '../utils/filter.ts';
+import { handleLetterFilter } from '../utils/filter.ts';
 
-const SearchPanel = ({ onUpdate, setSelectedTerm, terms, sx }) => {
+const SearchPanel = ({ parent_setSearchQuery, parent_setFilteredTerms, parent_setSelectedTerm, terms, filteredTerms, sx }) => {
   const [selectedLetter, setSelectedLetter] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const searchBarRef = useRef(null);
-
-  const setFilteredTerms = (terms) => {
-    onUpdate(terms, searchQuery);
-  };
 
   const handleLetterClick = (letter) => {
     const newSelectedLetter = letter === selectedLetter ? null : letter;
-    console.log('clear');
     setSelectedLetter(newSelectedLetter);
-
-    console.log(newSelectedLetter, selectedLetter);
-    if (searchBarRef.current) {
-      searchBarRef.current.clear(); // Clear the search bar
-    }
     onLetterFilter(newSelectedLetter === null ? '' : newSelectedLetter);
   };
 
   const handleSearchQuery = (query) => {
     setSelectedLetter(null); // Clear letter selection when searching
-    console.log('clear');
-    setSearchQuery(query);
+    parent_setSelectedTerm(null);
   };
 
   const handleClearFilter = () => {
-    console.log('clear');
+    if (searchBarRef.current) {
+      searchBarRef.current.clear(); // Clear the search bar
+    }
+
     setSelectedLetter(null);
     onLetterFilter(''); // Clear filter
   };
 
   const onLetterFilter = (letter) => {
-    setSearchQuery('');
+    if (searchBarRef.current) {
+      searchBarRef.current.clear(true); // Clear the search bar
+    }
+
     handleLetterFilter(terms, letter, results => {
       startTransition(() => {
-        setFilteredTerms(results);
+        parent_setFilteredTerms(results);
       });
     });
-    setSelectedTerm(null);
+    parent_setSelectedTerm(null);
   };
 
   const onTermSelect = (term) => {
-    setSelectedTerm(term);
-    setFilteredTerms([term]);
-  };
-
-  const debouncedSearchQuery = useDebounce(searchQuery, 100);
-  
-  useLayoutEffect(() => {
-    if (debouncedSearchQuery) {
-      handleSearch(debouncedSearchQuery, results => {
-        startTransition(() => {
-          setFilteredTerms(results);
-        });
-      });
-    } else {
-      startTransition(() => {
-        setFilteredTerms(terms);
-      });
+    if (searchBarRef.current) {
+      searchBarRef.current.clear(); // Clear the search bar
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedSearchQuery]);
-
+    
+    parent_setSelectedTerm(term);
+    parent_setFilteredTerms(terms);
+  };
+  
   return (
     <Box sx={{ 
       borderRight: 1, 
@@ -80,7 +60,13 @@ const SearchPanel = ({ onUpdate, setSelectedTerm, terms, sx }) => {
       ...sx
     }}>
       <Box sx={{ p: 4, pl: 3, pb: 0 }}>
-        <SearchBar ref={searchBarRef} onSearch={handleSearchQuery} />
+        <SearchBar
+          ref={searchBarRef}
+          terms={terms}
+          parent_setSearchQuery={parent_setSearchQuery}
+          parent_setFilteredTerms={parent_setFilteredTerms}
+          onSearch={handleSearchQuery}
+          />
         <Grid2 container spacing={1} sx={{ mt: 2 }}>
           {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter) => (
             <Grid2 key={letter}>
@@ -113,7 +99,7 @@ const SearchPanel = ({ onUpdate, setSelectedTerm, terms, sx }) => {
                 }
               }}
             >
-              Clear
+              Filter löschen
             </Button>
           </Grid2>
         </Grid2>
@@ -126,11 +112,12 @@ const SearchPanel = ({ onUpdate, setSelectedTerm, terms, sx }) => {
         display: 'flex',
         flexDirection: 'column',
       }}>
+        {filteredTerms.length > 0 && (
         <AlphabeticalTermList 
-          terms={terms} 
+          terms={filteredTerms} 
           onLetterSelect={handleLetterClick}
           onTermSelect={onTermSelect}
-        />
+        />)}
         <Box sx={{ flexShrink: 0, height: 40 }} />
       </Box>
     </Box>
