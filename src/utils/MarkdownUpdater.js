@@ -27,25 +27,25 @@ const MarkdownUpdater = ({ url, setTerms, setFilteredTerms }) => {
     const lines = markdown.split('\n');
     const terms = [];
     let currentTerm = null;
-
+  
     lines.forEach(line => {
       line = line.trim();
-      if (line.startsWith('### ')) { // Header indicates a term
+      if (line.startsWith('### ')) {
         if (currentTerm) {
           terms.push(currentTerm);
         }
-        currentTerm = { header: line.slice(4), definition: '' }; // Extract header without "### "
-      } else if (currentTerm && line) { // Definition lines
-        currentTerm.definition += (currentTerm.definition ? ' ' : '') + line; // Append definition
+        currentTerm = { header: line.slice(4), definition: '' };
+      } else if (currentTerm && line.startsWith('> ')) {
+        currentTerm.definition += (currentTerm.definition ? ' ' : '') + line.slice(2);
       }
     });
-
+  
     if (currentTerm) {
-      terms.push(currentTerm); // Push last term
+      terms.push(currentTerm);
     }
-
+  
     return terms;
-  };
+  };  
 
   return null; // No UI needed for this component
 };

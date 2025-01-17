@@ -46,6 +46,7 @@ const SearchPanel = ({ parent_setSearchQuery, parent_setFilteredTerms, parent_se
       searchBarRef.current.clear(); // Clear the search bar
     }
     
+    setSelectedLetter(null);
     parent_setSelectedTerm(term);
     parent_setFilteredTerms(terms);
   };

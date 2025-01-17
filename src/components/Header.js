@@ -14,45 +14,77 @@ const Header = () => (
       alignItems: 'center',
       justifyContent: 'space-between'
     }}>
-      <Button 
-        component="a" 
-        href="https://www.google.com" 
-        sx={{ display: 'flex', alignItems: 'center', textTransform: 'none' }} // Remove default button text styling
+      <Button
+        component="a"
+        href="https://aktivismus.org"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          textTransform: 'none',
+          transition: 'background-color 0.3s ease',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          }
+        }}
       >
-        <img 
-          src="https://wiki.aktivismus.org/uploads/images/system/2025-01/ADAFfZfZxlqEIjUz-b1gszpl3weynbzov-36b973bd-9f24-4286-a26d-fe01a10d7f94.jpeg" 
-          alt="logo" 
-          style={{ height: '50px', width: '50px', objectFit: 'cover' }} 
+        <img
+          src="https://wiki.aktivismus.org/uploads/images/system/2025-01/ADAFfZfZxlqEIjUz-b1gszpl3weynbzov-36b973bd-9f24-4286-a26d-fe01a10d7f94.jpeg"
+          alt="logo"
+          style={{ height: '50px', width: '50px', objectFit: 'cover' }}
         />
         <Typography variant="h5" sx={{ ml: 2, color: 'white' }}>MovementWiki</Typography>
       </Button>
-      
-      {/* Flex container for buttons */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Button color="inherit" href="https://wiki.aktivismus.org/" sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-          <img 
-            src={WikiIcon} 
-            alt="Wiki Icon" 
-            style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }} // Invert colors to white
+
+
+      <Box sx={{ display: 'flex', alignItems: 'center', pr: 3 }}>
+        <Button
+          color="inherit"
+          href="https://wiki.aktivismus.org/"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mr: 2,
+            transition: 'background-color 0.3s ease',
+            '&:hover': {
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            }
+          }}
+        >
+          <img
+            src={WikiIcon}
+            alt="Wiki Icon"
+            style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }}
           />
-          Wiki
+          Movement Wiki
         </Button>
-        <Button color="inherit" href="https://kalender.aktivismus.org/" sx={{ display: 'flex', alignItems: 'center' }}>
-          <img 
-            src={CalendarIcon} 
-            alt="Calendar Icon" 
-            style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }} // Invert colors to white
+        <Button
+          color="inherit"
+          href="https://kalender.aktivismus.org/"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            transition: 'background-color 0.3s ease',
+            '&:hover': {
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            }
+          }}
+        >
+          <img
+            src={CalendarIcon}
+            alt="Calendar Icon"
+            style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }}
           />
           Kalender
         </Button>
       </Box>
+
     </Box>
-    
+
     <Box sx={{
       height: '150px',
-      p: 2, 
+      p: 2,
       pb: 4,
-      bgcolor: 'primary.main', 
+      bgcolor: 'primary.main',
       color: 'white',
       display: 'flex',
       flexDirection: 'column', // Stack items vertically
