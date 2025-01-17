@@ -4,4 +4,9 @@ services:
     ports:
       - "3000:3000"
   redis:
-    image: "redis:bookworm"
+    networks:
+      - external_network
+networks:
+  external_network:
+    name: reverse_proxy
+    external: true
