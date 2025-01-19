@@ -5,8 +5,9 @@ COPY package*.json ./
 RUN npm install --only=production
 
 COPY . .
+RUN npm install -g serve
 RUN npm run build
 EXPOSE 3000
 
 ENV NODE_ENV=production
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build"]

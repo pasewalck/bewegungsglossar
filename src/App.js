@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import Header from './components/Header';
 import SearchPanel from './components/SearchPanel';
 import GlossaryPanel from './components/GlossaryPanel';
@@ -13,6 +13,7 @@ const App = () => {
   const [filteredTerms, setFilteredTerms] = useState(terms);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTerm, setSelectedTerm] = useState(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     initializeWorker();
@@ -35,19 +36,20 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <MarkdownUpdater url='https://pad.degrowth.net/s/Glossar/download' setTerms={init} setFilteredTerms={setFilteredTerms} />
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-        <Header />
-        <Box sx={{ 
-          display: 'flex', 
-          flex: 1, 
+        <Header isMobile={isMobile} />
+        <Box sx={{
+          display: 'flex',
+          flex: 1,
           overflow: 'hidden',
-          justifyContent: 'center', 
+          justifyContent: 'center',
         }}>
-          <MarkdownUpdater url='https://pad.degrowth.net/s/Glossar/download' setTerms={init} setFilteredTerms={setFilteredTerms} />
           <Box sx={{
             display: 'flex',
             width: '1200px',
             maxWidth: '100%',
+            flexDirection: isMobile ? 'column' : 'row',
           }}>
             <SearchPanel
               parent_setSearchQuery={handleSearchQueryChange}
@@ -56,13 +58,18 @@ const App = () => {
               setSelectedTerm={setSelectedTerm}
               terms={terms}
               filteredTerms={filteredTerms}
+              isMobile={isMobile}
               sx={{ width: '40%', flexShrink: 0 }}
             />
-            <GlossaryPanel 
-              terms={filteredTerms} 
+            <GlossaryPanel
+              terms={filteredTerms}
               searchQuery={searchQuery}
               selectedTerm={selectedTerm}
-              sx={{ width: '60%', flexShrink: 0 }}
+              isMobile={isMobile}
+              sx={{ 
+                width: isMobile ? '100%' : '60%',
+                flexShrink: 0
+              }}
             />
           </Box>
         </Box>

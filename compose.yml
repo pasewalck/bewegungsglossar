@@ -3,9 +3,3 @@ services:
     build: .
     ports:
       - "3000:3000"
-    networks:
-      - external_network
-networks:
-  external_network:
-    name: reverse_proxy
-    external: true
