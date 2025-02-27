@@ -8,13 +8,13 @@ self.onmessage = (e) => {
 
   switch(type) {
     case 'initializeFuse':
-      console.log('init');
+      console.log('initializing fuse worker thread');
       const { terms, options } = data;
       fuse = new Fuse(terms, options);
       
       // eslint-disable-next-line no-restricted-globals
       self.postMessage({ type: 'initializeDone' });
-      console.log('init done');
+      console.log('initialization done');
       break;
     case 'handleSearch':
       const { query } = data;

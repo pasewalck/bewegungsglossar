@@ -91,7 +91,7 @@ const DesktopHeader = () => (
         }}>
             <Typography variant="h2" align="center" sx={{ m: 1, userSelect: 'none' }}>Bewegungsglossar</Typography>
             <Typography variant="h6" align="center" sx={{ mb: 4, userSelect: 'none', width: 500 }}>
-                Lorem ipsum lalala naja vllt ne Beschreibung die auch ganz nett wäre aber die gibt es halt noch net :/
+                Eine stets wachsende Sammlung an Begriffen aus aktivistischen Kontexten
             </Typography>
         </Box>
     </Box>
