@@ -1,7 +1,5 @@
-import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import WikiIcon from '../assets/icons/wiki-icon.png';
-import CalendarIcon from '../assets/icons/calendar-icon.png';
+import AppLinksDropdown from './AppLinksDropdown';
 
 const DesktopHeader = () => (
     <Box>
@@ -36,45 +34,7 @@ const DesktopHeader = () => (
             </Button>
 
             <Box sx={{ display: 'flex', alignItems: 'center', pr: 3 }}>
-                <Button
-                    color="inherit"
-                    href="https://wiki.aktivismus.org/"
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        mr: 2,
-                        transition: 'background-color 0.3s ease',
-                        '&:hover': {
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        }
-                    }}
-                >
-                    <img
-                        src={WikiIcon}
-                        alt="Wiki Icon"
-                        style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }}
-                    />
-                    Movement Wiki
-                </Button>
-                <Button
-                    color="inherit"
-                    href="https://kalender.aktivismus.org/"
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        transition: 'background-color 0.3s ease',
-                        '&:hover': {
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        }
-                    }}
-                >
-                    <img
-                        src={CalendarIcon}
-                        alt="Calendar Icon"
-                        style={{ marginRight: '8px', height: '20px', width: '20px', filter: 'invert(1)' }}
-                    />
-                    Kalender
-                </Button>
+                <AppLinksDropdown />
             </Box>
         </Box>
 
