@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <TermUpdater url={process.env.REACT_APP_BACKEND_URL} setTerms={init} setFilteredTerms={setFilteredTerms} />
+      <TermUpdater url={process.env.REACT_APP_BACKEND_URL || ""} setTerms={init} setFilteredTerms={setFilteredTerms} />
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <Header isMobile={isMobile} />
         <Box sx={{
