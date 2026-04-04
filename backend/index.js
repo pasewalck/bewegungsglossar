@@ -27,11 +27,13 @@ await fastify.register(cors, {
 })
 
 fastify.get('/api/terms', async (request, reply) => {
-    reply.send(await terms.getTerms())
+    const docs = await terms.getTerms();
+    const objs = docs.map(d => (typeof d.toObject === 'function' ? d.toObject() : d));
+    reply.send(objs);
 });
 
 fastify.get('/api/terms/:term', async (request, reply) => {
-    reply.send(await terms.getTerm(request.params.term))
+    reply.send((await terms.getTerm(request.params.term)).toObject())
 });
 
 fastify.setNotFoundHandler((request, reply) => {
