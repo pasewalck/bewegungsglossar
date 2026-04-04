@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, Typography } from '@mui/material';
 
 const GlossaryList = React.memo(({ terms, searchQuery, selectedTerm }) => {
   const highlightHTML = (html, highlight) => {
-    if (typeof highlight === 'string' && !highlight.trim()) {
+    if ((typeof highlight === 'string' && !highlight.trim()) || html == undefined) {
       return html;
     }
 
