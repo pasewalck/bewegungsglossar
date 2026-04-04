@@ -34,7 +34,7 @@ export class Term {
      * @returns {string} The current header.
      */
     getHeaderSlug() {
-        return this.getHeaderLower().replaceAll(" ", "-")
+        return this.getHeaderLower().trim().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')
     }
 
     /**
