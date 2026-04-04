@@ -30,6 +30,14 @@ export class Term {
     }
 
     /**
+     * Get the header of this Term as a slug.
+     * @returns {string} The current header.
+     */
+    getHeaderSlog() {
+        return this.getHeaderLower().replaceAll(" ", "-")
+    }
+
+    /**
      * Get the header of this Term.
      * @returns {string} The current header.
      */
