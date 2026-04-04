@@ -1,6 +1,7 @@
 import axios from "axios";
 import env from "../../utils/env.js";
 import { parseMarkdown } from "../../utils/markdown.js";
+import Term from "../../models/term.js"
 
 const getRequestConfig = (
     additionalRequestData = {},
@@ -15,6 +16,10 @@ const getRequestConfig = (
     };
 };
 
+/**
+ * Fetch markdown for glossary book from the configured bookstack API URL and parse it into Term instances.
+ * @returns {Promise<Term[]>} Array of Term instances.
+ */
 const getTermArray = async () => {
     const pageIds = await getPageIds(env.BOOKSTACK_GLOSSAR_BOOK)
 
