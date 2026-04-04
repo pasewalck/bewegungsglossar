@@ -9,7 +9,7 @@ export const initializeFuse = (terms) => {
     keys: ['header', 'definition'],
     threshold: 0.3,
   };
-  
+
   worker.postMessage({ type: 'initializeFuse', data: { terms, options } });
 };
 

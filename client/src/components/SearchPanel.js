@@ -2,7 +2,7 @@ import React, { useState, useRef, startTransition } from 'react';
 import { Box, Button, Grid2 } from '@mui/material';
 import SearchBar from './SearchBar';
 import AlphabeticalTermList from './AlphabeticalTermList';
-import { handleLetterFilter } from '../utils/filter.ts';
+import { handleLetterFilter } from '../utils/filter.js';
 
 const SearchPanel = ({ isMobile, parent_setSearchQuery, parent_setFilteredTerms, parent_setSelectedTerm, terms, filteredTerms, sx }) => {
   const [selectedLetter, setSelectedLetter] = useState(null);

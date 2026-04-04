@@ -4,9 +4,9 @@ import { Box, useMediaQuery } from '@mui/material';
 import Header from './components/Header';
 import SearchPanel from './components/SearchPanel';
 import GlossaryPanel from './components/GlossaryPanel';
-import theme from './theme/theme.ts';
-import { initializeWorker, initializeFuse } from './utils/filter.ts';
-import MarkdownUpdater from './utils/MarkdownUpdater';
+import theme from './theme/theme.js';
+import { initializeWorker, initializeFuse } from './utils/filter.js';
+import TermUpdater from './utils/TermUpdater.js';
 
 const App = () => {
   const [terms, setTerms] = useState([]);
@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <MarkdownUpdater url='https://pad.degrowth.net/s/Glossar/download' setTerms={init} setFilteredTerms={setFilteredTerms} />
+      <TermUpdater url={process.env.REACT_APP_BACKEND_URL} setTerms={init} setFilteredTerms={setFilteredTerms} />
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <Header isMobile={isMobile} />
         <Box sx={{
@@ -66,7 +66,7 @@ const App = () => {
               searchQuery={searchQuery}
               selectedTerm={selectedTerm}
               isMobile={isMobile}
-              sx={{ 
+              sx={{
                 width: isMobile ? '100%' : '60%',
                 flexShrink: 0
               }}

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useLayoutEffect, useState, forwardRef, useImperativeHandle, startTransition } from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
-import { handleSearch } from '../utils/filter.ts';
+import { handleSearch } from '../utils/filter.js';
 import ClearIcon from '@mui/icons-material/Clear';
 import useDebounce from '../utils/useDebounce';
 
@@ -15,7 +15,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
       if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
         return;
       }
-      
+
       // Focus the search input
       if (inputRef.current && event.key.length === 1) {
         inputRef.current.focus();
@@ -30,7 +30,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
   }, []);
 
   useImperativeHandle(ref, () => ({
-    clear(ignoreTerms=false) {
+    clear(ignoreTerms = false) {
       setSearchQuery('');
       setJustCleared(true);
       parent_setSearchQuery('');
@@ -39,7 +39,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
       }
     }
   }));
-  
+
 
   const handleClear = () => {
     setSearchQuery('');
@@ -52,7 +52,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
   };
 
   const debouncedSearchQuery = useDebounce(searchQuery, 100);
-  
+
   useLayoutEffect(() => {
     if (debouncedSearchQuery) {
       handleSearch(debouncedSearchQuery, results => {
@@ -71,7 +71,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
         }
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchQuery]);
 
   return (
@@ -100,7 +100,7 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
           },
         },
       }}
-      
+
       slotProps={{
         input: {
           size: 'small',
