@@ -29,6 +29,19 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
     };
   }, []);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        setSearchQuery(decodeURIComponent(hash));
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   useImperativeHandle(ref, () => ({
     clear(ignoreTerms = false) {
       setSearchQuery('');

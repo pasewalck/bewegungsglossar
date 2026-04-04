@@ -26,6 +26,11 @@ const App = () => {
   }, []);
 
   const handleSearchQueryChange = useCallback((query) => {
+    if (query.trim()) {
+      window.history.replaceState(null, '', `#${query}`);
+    } else {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
     setSearchQuery(query);
   }, []);
 
