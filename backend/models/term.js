@@ -1,7 +1,7 @@
 /**
  * Represents a glossary term with a header and an definition.
  */
-export class Term {
+export default class Term {
     /**
      * Create a Term.
      * @param {string} header - The header value (term title).
@@ -69,4 +69,30 @@ export class Term {
     hasDefinition() {
         return this.getDefinition() != undefined
     }
+
+    /**
+     * Return a plain object representation of this Term.
+     * Includes header, headerLower, headerSlug, and definition (only if set).
+     * @returns {{header: string, headerLower: string, headerSlug: string, definition?: string}} Plain object representation.
+     */
+    toObject() {
+        const obj = {
+            header: this.header,
+            headerLower: this.getHeaderLower(),
+            headerSlug: this.getHeaderSlug()
+        };
+        if (this.hasDefinition()) obj.definition = this.definition;
+        return obj;
+    }
+
+    /**
+     * Return a JSON string representation of this Term.
+     * @returns {string} JSON string.
+     */
+    toJson() {
+        return JSON.stringify(this.toObject());
+    }
+
+
+
 }
