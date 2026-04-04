@@ -20,7 +20,7 @@ const populateTermMap = async () => {
     termMap.clear()
     for (let index = 0; index < terms.length; index++) {
         const term = terms[index];
-        termMap.set(term.getHeaderSlog(), term)
+        termMap.set(term.getHeaderSlug(), term)
     }
 }
 
