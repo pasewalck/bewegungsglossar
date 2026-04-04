@@ -17,10 +17,31 @@ export const parseMarkdown = (markdown, titlePrefix = '### ') => {
      * @returns {string} Text with markdown inline styles replaced by HTML tags.
      */
     const parseInlineStyles = (text) => {
-        return text
+
+        const escapeMap = new Map([
+            ['*', 'ESCAPED_SR_ESCAPED'],   // For `*`
+            ['_', 'ESCAPED_LL_ESCAPED'],   // For `_`
+            ['`', 'ESCAPED_AP_ESCAPED'],   // For backticks
+            ['[', 'ESCAPED_LB_ESCAPED'],   // For `[`
+            [']', 'ESCAPED_RB_ESCAPED'],   // For `]`
+        ]);
+
+        const decodeMap = new Map(
+            [...escapeMap.entries()].map(([key, value]) => [value, key])
+        );
+
+        text = text.replace(/\\([*_`\[\]\\])/g, (match, p1) => escapeMap.get(p1));
+
+        text = text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold
             .replace(/\*(.*?)\*/g, '<em>$1</em>')              // Italic
-            .replace(/`(.*?)`/g, '<code>$1</code>');           // Code
+            .replace(/`(.*?)`/g, '<code>$1</code>')           // Code
+            .replace(/\[(.*?)\]/g, '<a href="$1">$1</a>');     // Links (optional)
+
+        // Unescape the temporarily replaced characters and remove the leading backslash
+        text = text.replace(/ESCAPED_[A-Za-z0-9_]+_ESCAPED/g, (match) => decodeMap.get(match));
+
+        return text;
     };
 
     lines.forEach(line => {
