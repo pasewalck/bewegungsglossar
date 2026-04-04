@@ -1,3 +1,5 @@
+import { marked } from 'marked';
+import escapeHtml from 'escape-html';
 import Term from "../models/term.js";
 
 /**
@@ -12,36 +14,14 @@ export const parseMarkdown = (markdown, titlePrefix = '### ') => {
     let currentTerm = null;
 
     /**
-     * Convert a subset of Markdown inline styles in a text string to HTML.
+     * Convert markdown inline styles in a text string to safe HTML.
      * @param {string} text - The input text containing markdown inline styles.
-     * @returns {string} Text with markdown inline styles replaced by HTML tags.
+     * @returns {string} Safe HTML string.
      */
     const parseInlineStyles = (text) => {
-
-        const escapeMap = new Map([
-            ['*', 'ESCAPED_SR_ESCAPED'],   // For `*`
-            ['_', 'ESCAPED_LL_ESCAPED'],   // For `_`
-            ['`', 'ESCAPED_AP_ESCAPED'],   // For backticks
-            ['[', 'ESCAPED_LB_ESCAPED'],   // For `[`
-            [']', 'ESCAPED_RB_ESCAPED'],   // For `]`
-        ]);
-
-        const decodeMap = new Map(
-            [...escapeMap.entries()].map(([key, value]) => [value, key])
-        );
-
-        text = text.replace(/\\([*_`\[\]\\])/g, (match, p1) => escapeMap.get(p1));
-
-        text = text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')              // Italic
-            .replace(/`(.*?)`/g, '<code>$1</code>')           // Code
-            .replace(/\[(.*?)\]/g, '<a href="$1">$1</a>');     // Links (optional)
-
-        // Unescape the temporarily replaced characters and remove the leading backslash
-        text = text.replace(/ESCAPED_[A-Za-z0-9_]+_ESCAPED/g, (match) => decodeMap.get(match));
-
-        return text;
+        // First escape dangerous HTML characters to treat them literally,
+        // then parse markdown inline styles.
+        return marked.parseInline(escapeHtml(text));
     };
 
     lines.forEach(line => {
