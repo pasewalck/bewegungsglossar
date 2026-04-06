@@ -26,6 +26,16 @@ await fastify.register(cors, {
     allowedHeaders: ["Content-Type", "Authorization"],
 })
 
+const widgetDistPath = path.join(__dirname, '../', 'widget', 'dist')
+if (fs.existsSync(path.join(widgetDistPath, "movement-glossary.js"))) {
+    console.log("Serving widget dist ...")
+    fastify.register(fastifyStatic, {
+        root: widgetDistPath,
+        prefix: "/widget/",
+        decorateReply: false
+    })
+}
+
 fastify.get('/api/terms', async (request, reply) => {
     const docs = await terms.getTerms();
     const objs = docs.map(d => (typeof d.toObject === 'function' ? d.toObject() : d));
