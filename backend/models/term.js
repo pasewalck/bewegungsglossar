@@ -89,7 +89,8 @@ export default class Term {
         const obj = {
             header: this.header,
             headerLower: this.getHeaderLower(),
-            headerSlug: this.getHeaderSlug()
+            headerSlug: this.getHeaderSlug(),
+            keywords: this.keywords
         };
         if (this.hasDefinition()) obj.definition = this.definition;
         return obj;
