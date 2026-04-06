@@ -5,13 +5,13 @@ export const defaultOptions = {
 };
 
 /**
- * Parse attribute value as JSON or return as-is
+ * Parse attribute value
  * @param {string} value
  * @returns {any}
  */
-function parseAttr(value) {
+function parseAttr(value, array = false) {
     if (!value) return undefined;
-    try { return JSON.parse(value); } catch { return value; }
+    try { return array ? value.split(",").map(v => v.trim()) : JSON.parse(v); } catch { return value; }
 }
 
 /**
@@ -34,7 +34,8 @@ export function readConfigFromScript() {
             || script.getAttribute('data-' + key)
             || script.getAttribute(kebab)
             || script.getAttribute('data-' + kebab);
-        if (val != null) cfg[key] = parseAttr(val);
+        if (val != null) cfg[key] = parseAttr(val, Array.isArray(defaultOptions[key]));
+
     }
     return cfg;
 }
