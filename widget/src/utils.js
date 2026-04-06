@@ -6,7 +6,7 @@ import Term from "./term.js";
  * @returns {Term}
  */
 export async function getTerms(filtered = true) {
-    await fetch("https://glossardev.aktivismus.org/api/terms");
+    const result = await fetch("https://glossardev.aktivismus.org/api/terms");
     const terms = await result.json();
     const termsFiltered = terms.filter((t) => t.definition != null);
     return filtered ? termsFiltered : terms;
