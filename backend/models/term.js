@@ -26,7 +26,7 @@ export default class Term {
      * @returns {string} The current header.
      */
     getHeaderLower() {
-        return this.header.toLocaleLowerCase()
+        return this.header.toLowerCase()
     }
 
     /**
