@@ -42,3 +42,6 @@ Use the data attributes to customize the behavior.
     data-includeClasses="glossary-content"
 ></script>
 ```
+
+<img width="1922" height="1640" alt="screenshot-1" src="https://github.com/user-attachments/assets/8504f6e4-b6b6-4277-ad0e-197b76288944" />
+
