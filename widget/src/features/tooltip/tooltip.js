@@ -1,4 +1,4 @@
-import { createEl } from "../highlighting/keywords.js";
+import { createEl } from "./create.js";
 
 const tooltipMap = new Map()
 
