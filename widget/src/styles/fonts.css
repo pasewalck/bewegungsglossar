@@ -1,4 +1,4 @@
 @font-face {
-    font-family: 'OpenSans';
-    src: url('/fonts/OpenSans-VariableFont.ttf') format('ttf')
+    font-family: 'OpenSans', sans-serif;
+    src: url('./fonts/OpenSans-VariableFont.ttf') format('ttf')
 }
