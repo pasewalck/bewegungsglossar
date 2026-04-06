@@ -4,7 +4,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: 'src/main.js',
-            name: 'Bewegungs Glossar',
+            name: 'bewegungsglossar',
             fileName: () => 'movement-glossary.js',
             formats: ['iife']
         },
