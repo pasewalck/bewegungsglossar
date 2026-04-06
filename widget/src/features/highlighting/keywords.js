@@ -29,5 +29,5 @@ export function buildKeywordMap(terms, minLength = 3) {
 export function buildKeywordPattern(keywordMap) {
     const sortedKeywords = [...keywordMap.keys()].sort((a, b) => b.length - a.length);
     const escaped = sortedKeywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-    return new RegExp(`(${escaped.join("|")})`, "gi");
+    return new RegExp(`(?<!\\p{L})(${escaped.join("|")})(?!\\p{L})`, "giu");
 }
