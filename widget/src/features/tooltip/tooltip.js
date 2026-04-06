@@ -24,7 +24,7 @@ export function createTooltip(term) {
             createEl("div", {
                 children: [
                     createEl("div", {
-                        children: [createEl("h2", { text: term.header }), createEl("p", { text: term.definition }),
+                        children: [createEl("h2", { text: term.header }), createEl("p", { html: term.definition }),
                         createEl("span", {
                             children: [
                                 createEl("span", { text: "Powered by" }),
