@@ -25,7 +25,7 @@ A simple glossary for therms that may be used in an activist context. Currently 
 Simply include the following in your project to use the widget on any site.
 
 ```html
-<script defer src="https://glossar.aktivismus.org/widget/movement-glossary.js"></script>
+<script type="module" defer src="https://glossar.aktivismus.org/widget/movement-glossary.js"></script>
 <link rel="stylesheet" href="https://glossar.aktivismus.org/widget/widget.css">
 ```
 
@@ -33,6 +33,7 @@ Use the data attributes to customize the behavior.
 
 ```html
 <script
+    type="module"
     defer
     src="https://glossar.aktivismus.org/widget/movement-glossary.js"
     data-id="movement-glossary"
