@@ -1,0 +1,106 @@
+.glossary-tooltip-item {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.glossary-tooltip-item>div {
+    position: relative;
+    width: min(400px, 92%);
+    max-height: 85vh;
+    background: #fff;
+    border-top: 30px solid rgb(97, 53, 131);
+    color: #111;
+    border-radius: 4px;
+    pointer-events: all;
+}
+
+@media (max-width: 420px) {
+    .glossary-tooltip-item>div {
+        width: calc(100% - 32px);
+    }
+
+    .glossary-tooltip-item>div {
+        padding: 16px;
+
+    }
+}
+
+.glossary-tooltip-item>div>div {
+    max-height: 85vh;
+    color: #111;
+    padding: 14px 28px 24px 28px;
+    pointer-events: all;
+}
+
+.glossary-tooltip-item h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+}
+
+.glossary-tooltip-item p {
+    margin: 0 0 12px 0;
+    line-height: 1.45;
+}
+
+.glossary-tooltip-item span>span {
+    font-size: 0.85rem;
+    color: #666;
+    margin-right: 5px;
+}
+
+.glossary-tooltip-item span>a {
+    font-size: 0.85rem;
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.glossary-tooltip-item span>a:hover {
+    text-decoration: underline;
+}
+
+.glossary-tooltip-item button {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    background: white;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: transform 200ms ease;
+}
+
+.glossary-tooltip-item button:hover {
+    transform: scale(1.05);
+}
+
+.glossary-tooltip-item button::before,
+.glossary-tooltip-item button::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: rgb(97, 53, 131);
+    border-radius: 1px;
+}
+
+.glossary-tooltip-item button::before {
+    transform: rotate(45deg);
+}
+
+.glossary-tooltip-item button::after {
+    transform: rotate(-45deg);
+}

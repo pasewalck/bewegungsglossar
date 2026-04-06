@@ -9,9 +9,6 @@ export default defineConfig({
             formats: ['iife']
         },
         target: 'es2017',
-        minify: 'esbuild',
-        rollupOptions: {
-            output: { compact: true }
-        }
+        minify: 'esbuild'
     }
 });

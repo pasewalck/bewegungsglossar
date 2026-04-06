@@ -1,0 +1,7 @@
+.glossary-highlight {
+    background: #fbfb271b;
+    border-bottom: 1px dashed #c9b100a2;
+    cursor: help;
+    position: relative;
+    display: inline;
+}
