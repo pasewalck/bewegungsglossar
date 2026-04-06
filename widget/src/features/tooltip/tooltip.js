@@ -28,7 +28,7 @@ export function createTooltip(term) {
                         createEl("span", {
                             children: [
                                 createEl("span", { text: "Powered by" }),
-                                createEl("a", { text: "Movement Glossar", href: `https://glossardev.aktivismus.org/` })
+                                createEl("a", { text: "Movement Glossar", href: `${import.meta.env.VITE_APP_BACKEND_URL}` })
                             ]
                         }),]
                     }),

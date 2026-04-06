@@ -5,7 +5,7 @@
  */
 
 export async function getTerms(filtered = true) {
-    const result = await fetch("https://glossardev.aktivismus.org/api/terms");
+    const result = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/terms`);
     const terms = await result.json();
     const termsFiltered = terms.filter((t) => t.definition != null);
     return filtered ? termsFiltered : terms;
