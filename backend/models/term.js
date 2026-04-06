@@ -9,7 +9,27 @@ export default class Term {
      */
     constructor(header, definition = undefined) {
         this.header = header
-        this.keywords = header.split(",").map(v => v.trim().toLowerCase())
+
+        function extractKeywords(header) {
+            const parts = [];
+
+            const headerCleaned = header.replace("&quot;", "")
+
+            // extract all parenthetical contents as separate tokens
+            headerCleaned.replace(/\(([^)]+)\)/g, (_, p) => { parts.push(p.trim()); return ""; });
+
+            // replace parentheses with nothing, then split on commas or colons
+            headerCleaned
+                .replace(/\([^)]+\)/g, "")
+                .split(/[;,:]/)
+                .map(s => s.trim())
+                .forEach(s => parts.push(s));
+
+            // normalize to lowercase
+            return parts.map(p => p.toLowerCase());
+        }
+
+        this.keywords = extractKeywords(header);
         this.definition = definition
     }
 
