@@ -9,7 +9,7 @@ export default class Term {
      */
     constructor(header, definition = undefined) {
         this.header = header
-        this.keywords = definition.split(",").map(v => v.trim().toLowerCase())
+        this.keywords = header.split(",").map(v => v.trim().toLowerCase())
         this.definition = definition
     }
 
