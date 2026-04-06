@@ -35,6 +35,7 @@ Use the data attributes to customize the behavior.
 <script
     defer
     src="https://glossar.aktivismus.org/widget/movement-glossary.js"
+    data-id="movement-glossary"
     data-ignoreTags="SCRIPT,STYLE,CODE"
     data-ignoreClasses="no-glossary,skip-glossary"
     data-includeClasses="glossary-content"

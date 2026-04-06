@@ -19,7 +19,12 @@ function parseAttr(value) {
  * @returns {object} Configuration object
  */
 export function readConfigFromScript() {
-    const script = document.currentScript;
+    let script = document.currentScript;
+
+    if (!script) {
+        script = document.querySelector('script[data-id="movement-glossary"]');
+    }
+
     if (!script) return {};
 
     const cfg = {};
