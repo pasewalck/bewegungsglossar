@@ -1,4 +1,5 @@
 .glossary-tooltip-item {
+    font-family: 'OpenSans', sans-serif;
     position: absolute;
     inset: 0;
     display: flex;
