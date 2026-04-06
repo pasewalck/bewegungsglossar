@@ -6,7 +6,7 @@ RUN npm install
 COPY client/ ./
 RUN npm run build
 
-# Stage 1: Build the vite widget application
+# Stage 2: Build the vite widget application
 FROM node:20-alpine AS widget-builder
 WORKDIR /app/widget
 COPY widget/package*.json ./
@@ -14,7 +14,7 @@ RUN npm install
 COPY widget/ ./
 RUN npm run build
 
-# Stage 2: Build the backend and serve the frontend
+# Stage 3: Build the backend and serve the frontend
 FROM node:20-alpine
 WORKDIR /app
 COPY backend/package*.json ./backend/
