@@ -9,6 +9,7 @@ export default class Term {
      */
     constructor(header, definition = undefined) {
         this.header = header
+        this.keywords = definition.split(",").map(v => v.trim().toLowerCase())
         this.definition = definition
     }
 
@@ -22,12 +23,21 @@ export default class Term {
     }
 
     /**
+     * Get the keywords of this term.
+     * @returns {string[]} The current keywords.
+     */
+    getKeywords() {
+        return this.keywords
+    }
+
+    /**
      * Get the header of this Term in lowercase.
      * @returns {string} The current header.
      */
     getHeaderLower() {
         return this.header.toLowerCase()
     }
+
 
     /**
      * Get the header of this Term as a slug.
