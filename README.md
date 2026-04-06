@@ -8,8 +8,8 @@ A simple glossary for therms that may be used in an activist context. Currently 
     - Fetches Markdown pages from Bookstack.
     - Builds an in-memory term map.
     - REST API:
-        - GET /api/terms — list all terms (with metadata).
-        - GET /api/terms/:slug — term details (HTML/Markdown).
+        - GET /api/terms — list all terms.
+        - GET /api/terms/:slug — a single term.
     - Optional: serve static assets for frontend and widget.
 - Frontend (powered by React)
     - Fetches terms from the API.
