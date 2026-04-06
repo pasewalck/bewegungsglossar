@@ -6,7 +6,7 @@ export default defineConfig({
             entry: 'src/main.js',
             name: 'bewegungsglossar',
             fileName: () => 'movement-glossary.js',
-            formats: ['iife']
+            formats: ['cjs']
         },
         target: 'es2017',
         minify: 'esbuild'
