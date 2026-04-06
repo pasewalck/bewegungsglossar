@@ -1,6 +1,6 @@
 .glossary-tooltip-item {
     font-family: 'OpenSans', sans-serif;
-    position: absolute;
+    position: fixed;
     inset: 0;
     display: flex;
     align-items: center;
