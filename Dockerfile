@@ -22,7 +22,7 @@ WORKDIR /app/backend
 RUN npm install --production
 COPY backend/ ./
 COPY --from=client-builder /app/client/build /app/client/build
-COPY --from=widget-builder /app/widget/build /app/widget/build
+COPY --from=widget-builder /app/widget/dist /app/widget/dist
 
 EXPOSE 3002
 CMD ["npm", "start"]
