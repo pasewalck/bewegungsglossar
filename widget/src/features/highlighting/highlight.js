@@ -42,7 +42,6 @@ export function highlightTextNodes(textNodes, pattern, keywordMap, options) {
             tracker.set(term.headerSlug, (tracker.has(term.headerSlug) ? tracker.get(term.headerSlug) : 0) + 1)
 
             if (tracker.get(term.headerSlug) == 1 || !options.onlyStyleFirst) {
-                console.log(options.styleWithHighlight)
                 if (options.styleWithHighlight)
                     highlight.classList.add("highlight");
                 if (options.styleWithUnderline)
