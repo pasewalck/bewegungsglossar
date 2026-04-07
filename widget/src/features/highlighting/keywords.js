@@ -6,7 +6,7 @@ import Term from "../../models/term.js";
  * @param {number} minLength - min length of keywords mapped
  * @returns {Map<string, Term>}
  */
-export function buildKeywordMap(terms, minLength = 3) {
+export function buildKeywordMap(terms, minLength) {
     const keywordMap = new Map();
     for (const term of terms) {
         if (!term.keywords || !term.definition) continue; // must have `keywords` and `definition`

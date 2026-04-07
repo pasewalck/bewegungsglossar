@@ -5,6 +5,7 @@ export const defaultOptions = {
     styleWithUnderline: true,
     styleWithHighlight: true,
     onlyStyleFirst: false,
+    minDetectLength: 2
 };
 
 /**

@@ -8,7 +8,7 @@ export async function initGlossary(opt = {}) {
     const options = Object.assign({}, defaultOptions, opt || {});
     const terms = await getTerms();
 
-    const keywordMap = buildKeywordMap(terms);
+    const keywordMap = buildKeywordMap(terms, options.minDetectLength);
     if (keywordMap.size === 0) return { applied: 0 };
 
     const pattern = buildKeywordPattern(keywordMap);
