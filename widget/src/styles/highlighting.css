@@ -1,7 +1,17 @@
-.glossary-highlight {
-    background: #fbfb271b;
-    border-bottom: 1px dashed #c9b100a2;
+.glossary-detect {
     cursor: help;
     position: relative;
     display: inline;
+}
+
+.glossary-detect.underline {
+    border-bottom: 1px dashed #c9b100ae;
+}
+
+.glossary-detect.highlight {
+    background: #fbfb2717;
+}
+
+.glossary-detect.underline:hover {
+    border-bottom: 1px dashed #c9b100b1;
 }

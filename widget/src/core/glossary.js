@@ -22,7 +22,7 @@ export async function initGlossary(opt = {}) {
 
     for (const root of roots) {
         const textNodes = collectTextNodes(root, ignoreTags, ignoreClasses);
-        applied += highlightTextNodes(textNodes, pattern, keywordMap);
+        applied += highlightTextNodes(textNodes, pattern, keywordMap, options);
     }
 
     return { applied };

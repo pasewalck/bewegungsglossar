@@ -2,6 +2,9 @@ export const defaultOptions = {
     includeClasses: [],
     ignoreClasses: ['no-glossary'],
     ignoreTags: ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'CODE', 'PRE', 'A'],
+    styleWithUnderline: true,
+    styleWithHighlight: true,
+    onlyStyleFirst: false,
 };
 
 /**
@@ -9,9 +12,19 @@ export const defaultOptions = {
  * @param {string} value
  * @returns {any}
  */
-function parseAttr(value, array = false) {
+function parseAttr(value, defaultVal) {
     if (!value) return undefined;
-    try { return array ? value.split(",").map(v => v.trim()) : JSON.parse(v); } catch { return value; }
+    switch (typeof defaultVal) {
+        case "boolean":
+            return value === "true"
+        case "number":
+            return Number.parseInt(value)
+        default:
+            if (Array.isArray(defaultVal))
+                return value.split(",").map(v => v.trim())
+            else
+                return value
+    }
 }
 
 /**
@@ -34,7 +47,7 @@ export function readConfigFromScript() {
             || script.getAttribute('data-' + key)
             || script.getAttribute(kebab)
             || script.getAttribute('data-' + kebab);
-        if (val != null) cfg[key] = parseAttr(val, Array.isArray(defaultOptions[key]));
+        if (val != null) cfg[key] = parseAttr(val, defaultOptions[key]);
 
     }
     return cfg;
