@@ -40,8 +40,11 @@ Use the data attributes to customize the behavior.
     data-ignoreTags="SCRIPT,STYLE,CODE"
     data-ignoreClasses="no-glossary,skip-glossary"
     data-includeClasses="glossary-content"
+    data-minDetectLength="2"
+    data-styleWithUnderline="true"
+    data-styleWithHighlight="true"
+    data-onlyStyleFirst="false"
 ></script>
 ```
 
 <img width="1922" height="1640" alt="screenshot-1" src="https://github.com/user-attachments/assets/8504f6e4-b6b6-4277-ad0e-197b76288944" />
-
