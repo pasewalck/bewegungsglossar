@@ -20,8 +20,8 @@ const AlphabeticalTermList = ({ terms, onLetterSelect, onTermSelect }) => {
         maxHeight: '100%', // Use maxHeight instead of height
         overflowY: 'auto', 
         bgcolor: 'background.paper',
-        borderRadius: 2,
-        boxShadow: 2,
+        borderRadius: 3,
+        boxShadow: '0 1px 4px rgba(0, 0, 0, 0.08)',
         p: 2,
         m: 1, // Add margin to give space for the shadow
     }}>

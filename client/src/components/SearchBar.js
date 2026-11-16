@@ -99,8 +99,8 @@ const SearchBar = forwardRef(({ terms, parent_setFilteredTerms, parent_setSearch
         '& .MuiOutlinedInput-root': {
           padding: '8px', // Move padding here
           bgcolor: 'background.paper',
-          borderRadius: 2,
-          boxShadow: 2,
+          borderRadius: 3,
+          boxShadow: '0 1px 4px rgba(0, 0, 0, 0.08)',
           '& fieldset': {
             borderColor: 'transparent',
           },

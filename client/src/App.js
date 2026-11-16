@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box, useMediaQuery } from '@mui/material';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import SearchPanel from './components/SearchPanel';
 import GlossaryPanel from './components/GlossaryPanel';
 import theme from './theme/theme.js';
@@ -47,6 +48,7 @@ const App = () => {
         <Box sx={{
           display: 'flex',
           flex: 1,
+          minHeight: 0,
           overflow: 'hidden',
           justifyContent: 'center',
         }}>
@@ -54,6 +56,7 @@ const App = () => {
             display: 'flex',
             width: '1200px',
             maxWidth: '100%',
+            minHeight: 0,
             flexDirection: isMobile ? 'column' : 'row',
           }}>
             <SearchPanel
@@ -73,11 +76,14 @@ const App = () => {
               isMobile={isMobile}
               sx={{
                 width: isMobile ? '100%' : '60%',
-                flexShrink: 0
+                ...(isMobile
+                  ? { flex: 1, minHeight: 0, height: 'auto' }
+                  : { flexShrink: 0 }),
               }}
             />
           </Box>
         </Box>
+        <Footer />
       </Box>
     </ThemeProvider>
   );

@@ -53,7 +53,7 @@ const SearchPanel = ({ isMobile, parent_setSearchQuery, parent_setFilteredTerms,
 
   if (isMobile) {
     return (
-      <Box sx={{ p: 4, pb: 0 }}>
+      <Box sx={{ p: 4, pb: 2, flexShrink: 0, bgcolor: 'grey.100' }}>
         <SearchBar
           ref={searchBarRef}
           terms={terms}
@@ -69,9 +69,20 @@ const SearchPanel = ({ isMobile, parent_setSearchQuery, parent_setFilteredTerms,
     <Box sx={{
       borderRight: 1,
       borderColor: 'divider',
+      bgcolor: 'grey.100',
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: '100%',
+        width: '100vw',
+        bgcolor: 'grey.100',
+      },
       ...sx
     }}>
       <Box sx={{ p: 3, pb: 0 }}>
