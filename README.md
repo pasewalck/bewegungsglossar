@@ -1,6 +1,6 @@
 # Bewegungsglossar
 
-A simple glossary for therms that may be used in an activist context. Currently live at: https://glossar.aktivismus.org/
+A simple glossary for terms that may be used in an activist context. Currently live at: https://glossar.aktivismus.org/
 
 ## Features
 
