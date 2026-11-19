@@ -43,7 +43,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <TermUpdater url={process.env.REACT_APP_BACKEND_URL || ""} setTerms={init} setFilteredTerms={setFilteredTerms} />
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
         <Header isMobile={isMobile} />
         <Box sx={{
           display: 'flex',
