@@ -53,7 +53,7 @@ const SearchPanel = ({ isMobile, parent_setSearchQuery, parent_setFilteredTerms,
 
   if (isMobile) {
     return (
-      <Box sx={{ p: 4, pb: 2, flexShrink: 0, bgcolor: 'grey.100' }}>
+      <Box sx={{ p: 2, flexShrink: 0, bgcolor: 'grey.100' }}>
         <SearchBar
           ref={searchBarRef}
           terms={terms}
